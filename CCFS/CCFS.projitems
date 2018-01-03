@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{C5A9BFF3-991E-4EB5-A947-554EA43464B7}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CCFS</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ContentPage_parser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Main.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuestDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ElementController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SaveRatings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NewsLetters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContactDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EndPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PageGen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReservationDetails.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConfigSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Login.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PCLStorageHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ActivityLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LoggerView.cs" />
+  </ItemGroup>
+</Project>
