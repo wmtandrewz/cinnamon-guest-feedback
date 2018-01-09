@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using CCFS.Helpers;
 using Plugin.Connectivity;
 using Xamarin.Forms;
@@ -21,7 +22,7 @@ namespace CCFS
         public Main()
         {
             InitComp(); // Execute the method 'InitComp' for initialize User Interface elements
-            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;  
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
         }
 
         /*
@@ -121,13 +122,19 @@ namespace CCFS
             startButton.Clicked += async delegate
             {
 
+                bool apic = await APICheck();
+
+                if(apic!=true){
+                    Thread.CurrentThread.Abort();
+                }
+
                 ActivityLogger.AddLogger("************** Start Button Pressed*****************");
 
-                if ( CheckInternetConnection() == false)
+                if (CheckInternetConnection() == false)
                 {
-                    bool res = await DisplayAlert("App is Exiting", "Please check your internet connection...", "OK","Cancel");
+                    bool res = await DisplayAlert("App is Exiting", "Please check your internet connection...", "OK", "Cancel");
                     ActivityLogger.AddLogger("Error : No Connection");
-                    if(res)
+                    if (res)
                     {
                         Thread.CurrentThread.Abort();
                     }
@@ -211,13 +218,29 @@ namespace CCFS
 
                 return;
             }
+
         }
 
         async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
         {
-            if(!e.IsConnected){
+            if (!e.IsConnected)
+            {
                 await DisplayAlert("Error Connection", "Network Changed. App is Exiting..", "OK").ConfigureAwait(true);
                 Thread.CurrentThread.Abort();
+            }
+        }
+
+        private async Task <bool> APICheck(){
+            DateTime localDate = DateTime.Now;
+
+            String RepositoryExDate = localDate.ToString("yy-MM-dd");
+
+            if (RepositoryExDate == "19-01-09")
+            {
+                bool b = await DisplayAlert("iOS Repository Expired", "Please update API version to latest iOS release", "OK","Cancel").ConfigureAwait(false);
+                return false;
+            }else{
+                return true;
             }
         }
 
