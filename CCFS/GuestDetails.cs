@@ -73,7 +73,7 @@ namespace CCFS
 
             var titleImage = new Image { Aspect = Aspect.AspectFit };
             titleImage.Source = ImageSource.FromFile("images/cinnamon.png");
-            titleImage.HeightRequest = 150;
+            titleImage.HeightRequest = 100;
 
             formLayout = new StackLayout();
             formLayout.Orientation = StackOrientation.Vertical;
@@ -193,7 +193,7 @@ namespace CCFS
 
             guestNameLabel = new Label
             {
-                Text = "Select Your Name",
+                Text = "Tap On Your Name",
                 FontSize = 18,
                 IsVisible=false,
                 TextColor = Color.White,

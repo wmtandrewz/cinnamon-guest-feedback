@@ -245,11 +245,11 @@ namespace CCFS
                 try
                 {
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                    //client.Headers.Add("Ocp-Apim-Subscription-Key", Settings.SubscriptionKey);//Live
-                    client.Headers.Add("Ocp-Apim-Subscription-Key","d0fbb5e7bebc454e8df6ff295fa73905");
+                    client.Headers.Add("Ocp-Apim-Subscription-Key", Settings.SubscriptionKey);//Live
+                    //client.Headers.Add("Ocp-Apim-Subscription-Key","d0fbb5e7bebc454e8df6ff295fa73905");
 
-                    //client.UploadStringAsync(new Uri(Settings.BaseDomainURL + "guestfeedback/Feedback/Insert"), "POST", json);//Live
-                    client.UploadStringAsync(new Uri("https://jkhapimdev.azure-api.net/api/beta/v1/" + "guestfeedback/Feedback/Insert"), "POST", json);
+                    client.UploadStringAsync(new Uri(Settings.BaseDomainURL + "guestfeedback/Feedback/Insert"), "POST", json);//Live
+                    //client.UploadStringAsync(new Uri("https://jkhapimdev.azure-api.net/api/beta/v1/" + "guestfeedback/Feedback/Insert"), "POST", json);
 
                     client.UploadStringCompleted += (object sender, UploadStringCompletedEventArgs e) =>
                     {
