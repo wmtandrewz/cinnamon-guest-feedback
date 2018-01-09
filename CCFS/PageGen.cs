@@ -589,7 +589,6 @@ namespace CCFS
                                             try
                                             {
                                                 Constants con = Constants.Instance;
-                                                var ele1 = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                                 var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                                 var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -608,6 +607,8 @@ namespace CCFS
                                                 //Save Temp Selection Data
                                                 con.RemoveFromTempNVC(_qid);
                                                 con.AddToTempNVC(_qid, (sequ + 1).ToString());
+
+                                                var ele1 = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                                 //Set 500ms delay for loading next page
                                                 Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -876,7 +877,6 @@ namespace CCFS
                                     try
                                     {
                                         Constants con = Constants.Instance;
-                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                         var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -895,6 +895,8 @@ namespace CCFS
                                         //Save Temp Selection Data
                                         con.RemoveFromTempNVC(_qid);
                                         con.AddToTempNVC(_qid, "1");
+
+                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         //Set 500ms delay for loading next page
                                         Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -953,7 +955,6 @@ namespace CCFS
                                     try
                                     {
                                         Constants con = Constants.Instance;
-                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                         var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -973,6 +974,8 @@ namespace CCFS
                                         //Save Temp Selection Data
                                         con.RemoveFromTempNVC(_qid);
                                         con.AddToTempNVC(_qid, "2");
+
+                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         //Set 500ms delay for loading next page
                                         Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -1029,7 +1032,6 @@ namespace CCFS
                                     try
                                     {
                                         Constants con = Constants.Instance;
-                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                         var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -1049,6 +1051,8 @@ namespace CCFS
                                         //Save Temp Selection Data
                                         con.RemoveFromTempNVC(_qid);
                                         con.AddToTempNVC(_qid, "3");
+
+                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         //Set 500ms delay for loading next page
                                         Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -1107,7 +1111,6 @@ namespace CCFS
                                     try
                                     {
                                         Constants con = Constants.Instance;
-                                        var ele = con.GetListElement();// Gets Next Question Type from 'Constants.pageList'
 
                                         var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                         var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -1127,6 +1130,8 @@ namespace CCFS
                                         //Save Temp Selection Data
                                         con.RemoveFromTempNVC(_qid);
                                         con.AddToTempNVC(_qid, "4");
+
+                                        var ele = con.GetListElement();// Gets Next Question Type from 'Constants.pageList'
 
                                         //Set 500ms delay for loading next page
                                         Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -1182,7 +1187,6 @@ namespace CCFS
                                     try
                                     {
                                         Constants con = Constants.Instance;
-                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                         var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -1204,6 +1208,8 @@ namespace CCFS
                                         //Save Temp Selection Data
                                         con.RemoveFromTempNVC(_qid);
                                         con.AddToTempNVC(_qid, "5");
+
+                                        var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                         //Set 500ms delay for loading next page
                                         Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -1385,7 +1391,6 @@ namespace CCFS
 
 
                                 Constants con = Constants.Instance;
-                                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                 var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                 var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -1405,6 +1410,8 @@ namespace CCFS
                                 //Save Temp Selection Data
                                 con.RemoveFromTempNVC(_qid);
                                 con.AddToTempNVC(_qid, "1");
+
+                                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                 //Set 500ms delay for loading next page
                                 Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -1450,8 +1457,6 @@ namespace CCFS
 
                                 con.SetCount();
 
-                                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
-
                                 //Save Temp Selection Data
                                 con.RemoveFromTempNVC(_qidnow);
                                 con.AddToTempNVC(_qidnow, "0");
@@ -1469,6 +1474,8 @@ namespace CCFS
                                 sr.SetRatings(_qcode, _RJson);
 
                                 ActivityLogger.AddLogger(_RJson);
+
+                                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                 //Set 500ms delay for loading next page
                                 Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
@@ -1907,7 +1914,6 @@ namespace CCFS
                             try
                             {
                                 Constants con = Constants.Instance;
-                                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                 var _qcode = con.GetQuestionCode(); // Gets Current Question Code
                                 var _qid = con.GetQuestionID(); //Gets Current Question ID
@@ -1928,6 +1934,8 @@ namespace CCFS
                                 //Save Temp Selection Data
                                 con.RemoveFromTempNVC(_qid);
                                 con.AddToTempNVC(_qid, comment);
+
+                                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                                 LoadPages(ele, _qid);
 
@@ -2032,7 +2040,6 @@ namespace CCFS
             try
             {
                 Constants con = Constants.Instance;
-                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                 var depID = con.GetDependantQID();
                 var depVal = con.GetDependantValue();
@@ -2056,6 +2063,8 @@ namespace CCFS
                 //Save Temp Selection Data
                 con.RemoveFromTempNVC(_qid);
                 con.AddToTempNVC(_qid, selected);
+
+                var ele = con.GetListElement(); // Gets Next Question Type from 'Constants.pageList'
 
                 //Set 500ms delay for loading next page
                 Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
