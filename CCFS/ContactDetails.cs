@@ -121,15 +121,11 @@ namespace CCFS
                     guestPhoneEditor.Text= guestPhoneEditor.Text.Remove(guestPhoneEditor.Text.Length - 1);
    				}
 
-     //           if(!guestPhoneEditor.Text.All(char.IsDigit)){
-					//guestPhoneEditor.Text = guestPhoneEditor.Text.Remove(guestPhoneEditor.Text.Length - 1);
-                //}
-
                 if(validator.MobileNumberValidator(guestPhoneEditor.Text)){
-                    guestPhoneEditor.BackgroundColor = Color.LimeGreen;
+                    guestPhoneEditor.BackgroundColor = Color.FromRgb(205, 255, 196);;
                     validated = true;
                 }else{
-                    guestPhoneEditor.BackgroundColor = Color.Red;
+                    guestPhoneEditor.BackgroundColor = Color.FromRgb(255, 153, 168);
                     validated = false;
                 }
 
@@ -170,12 +166,12 @@ namespace CCFS
 
                 if (validator.EmailValidator(guestMailEditor.Text))
                 {
-                    guestMailEditor.BackgroundColor = Color.LimeGreen;
+                    guestMailEditor.BackgroundColor = Color.FromRgb(205, 255, 196);
                     validated = true;
                 }
                 else
                 {
-                    guestMailEditor.BackgroundColor = Color.Red;
+                    guestMailEditor.BackgroundColor = Color.FromRgb(255, 153, 168);
                     validated = false;
                 }
 
@@ -193,6 +189,30 @@ namespace CCFS
             var NexttapRecognizer = new TapGestureRecognizer();
             NexttapRecognizer.Tapped += (s, e) =>
             {
+                if (validator.EmailValidator(guestMailEditor.Text))
+                {
+                    guestMailEditor.BackgroundColor = Color.FromRgb(205, 255, 196);
+                }
+                else
+                {
+                    guestMailEditor.BackgroundColor = Color.FromRgb(255, 153, 168);
+                    validated = false;
+                    guestMailEditor.Text = "";
+                    guestMailEditor.Focus();
+                }
+
+                if (validator.MobileNumberValidator(guestPhoneEditor.Text))
+                {
+                    guestPhoneEditor.BackgroundColor = Color.FromRgb(205, 255, 196); ;
+                }
+                else
+                {
+                    guestPhoneEditor.BackgroundColor = Color.FromRgb(255, 153, 168);
+                    validated = false;
+                    guestPhoneEditor.Text = "";
+                    guestPhoneEditor.Focus();
+                }
+
                 if(validated){
                     
                     ActivityLogger.AddLogger("Contact details entered and validated");

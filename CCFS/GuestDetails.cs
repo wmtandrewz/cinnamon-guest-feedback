@@ -595,11 +595,11 @@ namespace CCFS
 
                 if (validator.EmailValidator(guestMailEditor.Text))
                 {
-                    guestMailEditor.BackgroundColor = Color.LimeGreen;
+                    guestMailEditor.BackgroundColor = Color.FromRgb(205, 255, 196);
                 }
                 else
                 {
-                    guestMailEditor.BackgroundColor = Color.Red;
+                    guestMailEditor.BackgroundColor = Color.FromRgb(255, 153, 168);
                 }
 
             };
@@ -613,11 +613,11 @@ namespace CCFS
 
                 if (validator.MobileNumberValidator(guestPhoneEditor.Text))
                 {
-                    guestPhoneEditor.BackgroundColor = Color.LimeGreen;
+                    guestPhoneEditor.BackgroundColor = Color.FromRgb(205, 255, 196);
                 }
                 else
                 {
-                    guestPhoneEditor.BackgroundColor = Color.Red;
+                    guestPhoneEditor.BackgroundColor = Color.FromRgb(255, 153, 168);
                 }
 
             };

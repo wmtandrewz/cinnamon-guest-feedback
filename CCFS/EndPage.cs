@@ -139,7 +139,7 @@ namespace CCFS
             DateTime localDate = DateTime.Now;
             SaveRatings.SaveRatingInstance._endTime = localDate.ToString();
 
-            SaveRatings.SaveRatingInstance.SaveRating(); // Save Data
+            //SaveRatings.SaveRatingInstance.SaveRating(); // Save Data
         }
 
     }
