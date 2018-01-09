@@ -18,7 +18,7 @@ namespace CCFS
 
         private Entry guestPhoneEditor,guestMailEditor;
         private Validation validator;
-        private bool validated = false;
+        private bool validated = true;
 
         public ContactDetails()
         {
