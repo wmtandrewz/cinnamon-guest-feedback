@@ -450,7 +450,7 @@ namespace CCFS
                                     String _RJson =
                                                                         "{\"CommID\":0," +
                                                                         "\"QId\":" + _qid + "," +
-                                                                        "\"Rating\":" + "-1" +
+                                                                        "\"Rating\":" + "0" +
                                                                         "}";
 
                                     SaveRatings sr = SaveRatings.SaveRatingInstance;
