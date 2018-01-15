@@ -189,6 +189,8 @@ namespace CCFS
             var NexttapRecognizer = new TapGestureRecognizer();
             NexttapRecognizer.Tapped += (s, e) =>
             {
+                
+
                 if (validator.EmailValidator(guestMailEditor.Text))
                 {
                     guestMailEditor.BackgroundColor = Color.FromRgb(205, 255, 196);
@@ -211,6 +213,16 @@ namespace CCFS
                     validated = false;
                     guestPhoneEditor.Text = "";
                     guestPhoneEditor.Focus();
+                }
+
+                if (guestMailEditor.Text == "")
+                {
+                    validated = true;
+                }
+
+                if (guestPhoneEditor.Text == "")
+                {
+                    validated = true;
                 }
 
                 if(validated){
