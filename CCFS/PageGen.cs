@@ -404,25 +404,39 @@ namespace CCFS
                         baseLayout.HorizontalOptions = LayoutOptions.Center;
                         baseLayout.VerticalOptions = LayoutOptions.Center;
 
-                        var buttonPanel = new StackLayout();
-                        buttonPanel.Orientation = StackOrientation.Horizontal;
-                        buttonPanel.HorizontalOptions = LayoutOptions.Center;
+                        var buttonPanel = new StackLayout
+                        {
+                            Orientation = StackOrientation.Horizontal,
+                            HorizontalOptions = LayoutOptions.Center,
+                            Margin=new Thickness(10,50,10,10)
+                        };
+
+                        var msgLabel = new Label()
+                        {
+                            WidthRequest = 800,
+                            HeightRequest = 60,
+                            TextColor = Color.Gray,
+                            VerticalTextAlignment = TextAlignment.Center,
+                            HorizontalTextAlignment = TextAlignment.Center,
+                            Text = cons.GetIsThisOptional()=="True"? "This Feedback is Optional" : "This Feedback is Mandatory"
+                        };
 
                         var nextBtn = new Image { Aspect = Aspect.AspectFit };
                         nextBtn.Source = ImageSource.FromFile("images/next.png");
                         nextBtn.WidthRequest = 60;
                         nextBtn.HeightRequest = 60;
                         nextBtn.HorizontalOptions = LayoutOptions.EndAndExpand;
-                        nextBtn.Margin = new Thickness(820, 60);
+                        //nextBtn.Margin = new Thickness(820, 60);
 
                         var backBtn = new Image { Aspect = Aspect.AspectFit };
                         backBtn.Source = ImageSource.FromFile("images/back.png");
                         backBtn.WidthRequest = 60;
                         backBtn.HeightRequest = 60;
                         backBtn.HorizontalOptions = LayoutOptions.StartAndExpand;
-                        backBtn.Margin = new Thickness(10, 60);
+                        //backBtn.Margin = new Thickness(10, 60);
 
                         buttonPanel.Children.Add(backBtn);
+                        buttonPanel.Children.Add(msgLabel);
                         buttonPanel.Children.Add(nextBtn);
 
                         baseLayout.Children.Add(emojiRootLayout);
@@ -441,7 +455,7 @@ namespace CCFS
                         {
                             try
                             {
-                                Console.WriteLine("optional : "+cons.GetIsOptional());
+                                Console.WriteLine("optional : " + cons.GetIsOptional());
 
                                 if (cons.GetIsOptional() == "True")
                                 {
@@ -532,9 +546,9 @@ namespace CCFS
 
                                 try
                                 {
-                                //Set Heat Bar Temp Data
-                                var tempQID = cons.GetNextQuestionID();
-                                var heatTemp = cons.GetTempValue(tempQID);
+                                    //Set Heat Bar Temp Data
+                                    var tempQID = cons.GetNextQuestionID();
+                                    var heatTemp = cons.GetTempValue(tempQID);
 
 
                                     if (heatTemp != null)
@@ -628,7 +642,7 @@ namespace CCFS
                                             }
                                             catch (ArgumentOutOfRangeException)
                                             {
-                                                 Navigation.PushAsync(new NewsLetters());
+                                                Navigation.PushAsync(new NewsLetters());
                                             }
                                             catch (Exception) { }
 
@@ -1542,22 +1556,34 @@ namespace CCFS
                         var buttonPanel = new StackLayout();
                         buttonPanel.Orientation = StackOrientation.Horizontal;
                         buttonPanel.HorizontalOptions = LayoutOptions.Center;
+                        buttonPanel.Margin = new Thickness(10, 50, 10, 10);
+
+                        var msgLabel = new Label()
+                        {
+                            WidthRequest = 800,
+                            HeightRequest = 60,
+                            TextColor = Color.Gray,
+                            VerticalTextAlignment = TextAlignment.Center,
+                            HorizontalTextAlignment = TextAlignment.Center,
+                            Text = cons.GetIsThisOptional() == "True" ? "This Feedback is Optional" : "This Feedback is Mandatory"
+                        };
 
                         var nextBtn = new Image { Aspect = Aspect.AspectFit };
                         nextBtn.Source = ImageSource.FromFile("images/next.png");
                         nextBtn.WidthRequest = 60;
                         nextBtn.HeightRequest = 60;
                         nextBtn.HorizontalOptions = LayoutOptions.EndAndExpand;
-                        nextBtn.Margin = new Thickness(820, 60);
+                        //nextBtn.Margin = new Thickness(820, 60);
 
                         var backBtn = new Image { Aspect = Aspect.AspectFit };
                         backBtn.Source = ImageSource.FromFile("images/back.png");
                         backBtn.WidthRequest = 60;
                         backBtn.HeightRequest = 60;
                         backBtn.HorizontalOptions = LayoutOptions.StartAndExpand;
-                        backBtn.Margin = new Thickness(10, 60);
+                        //backBtn.Margin = new Thickness(10, 60);
 
                         buttonPanel.Children.Add(backBtn);
+                        buttonPanel.Children.Add(msgLabel);
                         buttonPanel.Children.Add(nextBtn);
 
                         List<Label> labelList = new List<Label>();
@@ -2069,8 +2095,8 @@ namespace CCFS
                 //Set 500ms delay for loading next page
                 Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
                 {
-                    if (depID == nextQCode && depVal == selected)
-                    {
+                    //Skipping next questions when Reservation mode is 0,1,0r 3
+                    if(depVal.Contains(selected)){
                         con.SetCount();
                         ele = con.GetListElement();
                         LoadPages(ele, _qid);

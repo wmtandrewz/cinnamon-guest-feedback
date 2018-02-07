@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using CCFS.Helpers;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Xamarin.Forms;
 /*
@@ -19,6 +21,11 @@ namespace CCFS
 	 */
     public partial class Main : ContentPage
     {
+
+        private string AppVersionStatic = "1.1.5";
+        private DateTime AppCurrDate = DateTime.Now;
+        //private DateTime AppCurrDate = new DateTime(2018, 02, 07);
+
         public Main()
         {
             InitComp(); // Execute the method 'InitComp' for initialize User Interface elements
@@ -123,6 +130,17 @@ namespace CCFS
             {
 
                 bool apic = await APICheck();
+
+                Version versionCheck = await AppVersionCheck().ConfigureAwait(true);
+
+                int resul = DateTime.Compare(AppCurrDate , versionCheck.PriorVersionExpiryDate);
+
+                if (versionCheck.AppVersion != AppVersionStatic || resul > 0)
+                {
+                    await DisplayAlert("Application is Expired", "Please update the App to latest release", "OK", "Cancel").ConfigureAwait(false);
+                    Thread.CurrentThread.Abort();
+                    
+                }
 
                 if(apic!=true){
                     Thread.CurrentThread.Abort();
@@ -230,18 +248,52 @@ namespace CCFS
             }
         }
 
+
+
         private async Task <bool> APICheck(){
             DateTime localDate = DateTime.Now;
+            DateTime staticDate = new DateTime(2019, 01, 01);
 
-            String RepositoryExDate = localDate.ToString("yy-MM-dd");
+            int res = DateTime.Compare(localDate, staticDate);
 
-            if (RepositoryExDate == "19-01-09")
+            if (res > 0)
             {
-                bool b = await DisplayAlert("iOS Repository Expired", "Please update API version to latest iOS release", "OK","Cancel").ConfigureAwait(false);
+                bool b = await DisplayAlert("Application is Expired", "Please update the App to latest release", "OK", "Cancel").ConfigureAwait(false);
                 return false;
-            }else{
+            }
+            else
+            {
                 return true;
             }
+
+        }
+
+        private async Task <Version> AppVersionCheck(){
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://chml.keells.lk/FeedbackAPI/api/");
+                var response = await client.GetAsync("Feedback/GetSystemConfiguration");
+                var resultQues = response.Content.ReadAsStringAsync().Result;
+
+                if (resultQues != "")
+                {
+                    Version version  = JsonConvert.DeserializeObject<Version>(resultQues);
+                    Console.WriteLine(resultQues);
+
+                    return version;
+                }else
+                {
+                    return null;
+                }
+            }
+                    
+            catch (Exception) 
+            {
+                return null;
+            }
+
         }
 
     }

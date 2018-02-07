@@ -33,5 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PCLStorageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ActivityLogger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoggerView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
   </ItemGroup>
 </Project>

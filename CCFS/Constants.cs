@@ -241,6 +241,11 @@ namespace CCFS
             return OptionalList[pageCount - 1];
         }
 
+        public string GetIsThisOptional()
+        {
+            return OptionalList[pageCount];
+        }
+
         //------------------------------------------- End Of Getters Setters --------------------------------------------------------
 
         /*
