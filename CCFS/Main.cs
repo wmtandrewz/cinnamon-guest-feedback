@@ -22,7 +22,7 @@ namespace CCFS
     public partial class Main : ContentPage
     {
 
-        private string AppVersionStatic = "1.1.5";
+        private string AppVersionStatic = "2.2.2";
         private DateTime AppCurrDate = DateTime.Now;
         //private DateTime AppCurrDate = new DateTime(2018, 02, 07);
 
@@ -132,6 +132,8 @@ namespace CCFS
                 bool apic = await APICheck();
 
                 Version versionCheck = await AppVersionCheck().ConfigureAwait(true);
+
+                Global._IsMultiLangual = versionCheck.IsMultiLingual;
 
                 int resul = DateTime.Compare(AppCurrDate , versionCheck.PriorVersionExpiryDate);
 

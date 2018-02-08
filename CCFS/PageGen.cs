@@ -30,9 +30,12 @@ namespace CCFS
 
         public PageGen()
         {
+
             Title = "Language & Region";    //Sets Page Title
-            InitComp(); //  Execute the method 'InitComp' for initialize User Interface elements
+
             BackgroundColor = Color.Black;
+            InitComp(); //  Execute the method 'InitComp' for initialize User Interface elements
+
         }
 
 
@@ -408,7 +411,7 @@ namespace CCFS
                         {
                             Orientation = StackOrientation.Horizontal,
                             HorizontalOptions = LayoutOptions.Center,
-                            Margin=new Thickness(10,50,10,10)
+                            Margin = new Thickness(10, 50, 10, 10)
                         };
 
                         var msgLabel = new Label()
@@ -418,7 +421,7 @@ namespace CCFS
                             TextColor = Color.Gray,
                             VerticalTextAlignment = TextAlignment.Center,
                             HorizontalTextAlignment = TextAlignment.Center,
-                            Text = cons.GetIsThisOptional()=="True"? "This Feedback is Optional" : "This Feedback is Mandatory"
+                            Text = cons.GetIsThisOptional() == "True" ? "This Feedback is Optional" : "This Feedback is Mandatory"
                         };
 
                         var nextBtn = new Image { Aspect = Aspect.AspectFit };
@@ -2096,7 +2099,8 @@ namespace CCFS
                 Device.StartTimer(TimeSpan.FromSeconds(loadDelay), () =>
                 {
                     //Skipping next questions when Reservation mode is 0,1,0r 3
-                    if(depVal.Contains(selected)){
+                    if (depVal.Contains(selected))
+                    {
                         con.SetCount();
                         ele = con.GetListElement();
                         LoadPages(ele, _qid);
