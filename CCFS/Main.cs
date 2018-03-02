@@ -7,12 +7,14 @@ using CCFS.Helpers;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Xamarin.Forms;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 /*
- * Author   :   Thimira Andradi
- * Date     :   10th July 2017
- * Company  :   CHML IT - Development
- * Legal    :   All Rights Reserved | CHML IT | Development Team
- */
+* Author   :   Thimira Andradi
+* Date     :   10th July 2017
+* Company  :   CHML IT - Development
+* Legal    :   All Rights Reserved | CHML IT | Development Team
+*/
 namespace CCFS
 {
     /*
@@ -21,6 +23,7 @@ namespace CCFS
 	 */
     public partial class Main : ContentPage
     {
+        private Image titleImage;
 
         private string AppVersionStatic = "2.2.2";
         private DateTime AppCurrDate = DateTime.Now;
@@ -30,6 +33,7 @@ namespace CCFS
         {
             InitComp(); // Execute the method 'InitComp' for initialize User Interface elements
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+
         }
 
         /*
@@ -42,7 +46,7 @@ namespace CCFS
             layout.BackgroundColor = Color.Black;
             layout.VerticalOptions = LayoutOptions.StartAndExpand;
 
-            var titleImage = new Image { Aspect = Aspect.AspectFit };
+            titleImage = new Image { Aspect = Aspect.AspectFit };
             titleImage.Source = ImageSource.FromFile("images/cinnamon.png");
             titleImage.HeightRequest = 150;
 
@@ -128,6 +132,7 @@ namespace CCFS
 
             startButton.Clicked += async delegate
             {
+                //TakeImageFromCamera();
 
                 bool apic = await APICheck();
 
@@ -135,16 +140,17 @@ namespace CCFS
 
                 Global._IsMultiLangual = versionCheck.IsMultiLingual;
 
-                int resul = DateTime.Compare(AppCurrDate , versionCheck.PriorVersionExpiryDate);
+                int resul = DateTime.Compare(AppCurrDate, versionCheck.PriorVersionExpiryDate);
 
                 if (versionCheck.AppVersion != AppVersionStatic || resul > 0)
                 {
                     await DisplayAlert("Application is Expired", "Please update the App to latest release", "OK", "Cancel").ConfigureAwait(false);
                     Thread.CurrentThread.Abort();
-                    
+
                 }
 
-                if(apic!=true){
+                if (apic != true)
+                {
                     Thread.CurrentThread.Abort();
                 }
 
@@ -252,7 +258,8 @@ namespace CCFS
 
 
 
-        private async Task <bool> APICheck(){
+        private async Task<bool> APICheck()
+        {
             DateTime localDate = DateTime.Now;
             DateTime staticDate = new DateTime(2019, 01, 01);
 
@@ -270,7 +277,8 @@ namespace CCFS
 
         }
 
-        private async Task <Version> AppVersionCheck(){
+        private async Task<Version> AppVersionCheck()
+        {
 
             try
             {
@@ -281,21 +289,51 @@ namespace CCFS
 
                 if (resultQues != "")
                 {
-                    Version version  = JsonConvert.DeserializeObject<Version>(resultQues);
+                    Version version = JsonConvert.DeserializeObject<Version>(resultQues);
                     Console.WriteLine(resultQues);
 
                     return version;
-                }else
+                }
+                else
                 {
                     return null;
                 }
             }
-                    
-            catch (Exception) 
+
+            catch (Exception)
             {
                 return null;
             }
 
+        }
+
+        private async void TakeImageFromCamera()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            await DisplayAlert("File Location", file.Path, "OK");
+
+            titleImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
         }
 
     }
