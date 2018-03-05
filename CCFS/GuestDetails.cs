@@ -708,6 +708,7 @@ namespace CCFS
                                         );
 
                 await Navigation.PushAsync(new PageGen());
+
             }
         }
 

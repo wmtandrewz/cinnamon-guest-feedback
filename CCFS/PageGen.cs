@@ -34,6 +34,7 @@ namespace CCFS
             Title = "Language & Region";    //Sets Page Title
 
             BackgroundColor = Color.Black;
+
             InitComp(); //  Execute the method 'InitComp' for initialize User Interface elements
 
         }
