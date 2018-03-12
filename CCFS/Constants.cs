@@ -47,6 +47,28 @@ namespace CCFS
             Console.WriteLine("Singleton Object init...");
 		}
 
+        public void ClearOldData(){
+            Console.WriteLine("Clear OLD Data...");
+            pageList.Clear();
+            questionList.Clear();
+            qIDList.Clear();
+            qCodeList.Clear();
+            qCodeList.Clear();
+            displayTypeList.Clear();
+            UIControlList.Clear();
+            DependantQIDList.Clear();
+            DependentValueList.Clear();
+            otherQuestionsArrayList.Clear();
+            otherQuesIDArrayList.Clear();
+            ratingScaleArrayList.Clear();
+            ratingScaleDescArrayList.Clear();
+            OptionalList.Clear();
+            tempNVC.Clear();
+            tempOQNVC.Clear();
+            mainCategory = 0;
+            pageCount = 0;
+        }
+
         public void ContactDB(){
             Console.WriteLine("Contacting DB...");
             pageList.Clear();

@@ -133,6 +133,8 @@ namespace CCFS
             startButton.Clicked += async delegate
             {
                 //TakeImageFromCamera();
+                Constants con = Constants.Instance;
+                con.ClearOldData();
 
                 bool apic = await APICheck();
 
@@ -168,9 +170,11 @@ namespace CCFS
                 }
                 else
                 {
+                    SaveRatings.SaveRatingInstance.ClearSavedData();
+
                     await Navigation.PushAsync(new GuestDetails());
 
-                    SaveRatings.SaveRatingInstance.ClearSavedData();
+                    //SaveRatings.SaveRatingInstance.ClearSavedData();
 
                     DateTime localDate = DateTime.Now;
                     SaveRatings.SaveRatingInstance._startTime = localDate.ToString();
