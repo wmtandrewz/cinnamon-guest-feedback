@@ -35,5 +35,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)LoggerView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Global.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MailSender.cs" />
   </ItemGroup>
 </Project>

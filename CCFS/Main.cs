@@ -24,6 +24,7 @@ namespace CCFS
     public partial class Main : ContentPage
     {
         private Image titleImage;
+        private MailSender ms;
 
         private string AppVersionStatic = "2.2.2";
         private DateTime AppCurrDate = DateTime.Now;
@@ -33,6 +34,8 @@ namespace CCFS
         {
             InitComp(); // Execute the method 'InitComp' for initialize User Interface elements
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+
+            ms = new MailSender();
 
         }
 
@@ -147,12 +150,16 @@ namespace CCFS
                 if (versionCheck.AppVersion != AppVersionStatic || resul > 0)
                 {
                     await DisplayAlert("Application is Expired", "Please update the App to latest release", "OK", "Cancel").ConfigureAwait(false);
+                    await ms.SendsmtpMail("Expired device was found! in " + Settings.HotelName, "App Expired").ConfigureAwait(true);
                     Thread.CurrentThread.Abort();
 
                 }
 
                 if (apic != true)
                 {
+                    
+                    await ms.SendsmtpMail("Expired device was found! in "+ Settings.HotelName,"App Expired").ConfigureAwait(true);
+
                     Thread.CurrentThread.Abort();
                 }
 
