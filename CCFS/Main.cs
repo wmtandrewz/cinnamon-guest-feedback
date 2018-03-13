@@ -25,6 +25,7 @@ namespace CCFS
     {
         private Image titleImage;
         private MailSender ms;
+        private Button startButton;
 
         private string AppVersionStatic = "2.2.2";
         private DateTime AppCurrDate = DateTime.Now;
@@ -118,7 +119,16 @@ namespace CCFS
 
             };
 
-            var startButton = new Button
+            var indicator = new ActivityIndicator()
+            {
+                IsVisible = false,
+                Color = Color.Green,
+                IsRunning = true,
+                BindingContext = this,
+
+            };
+
+             startButton = new Button
             {
                 Text = "Start",
                 FontSize = 36,
@@ -135,11 +145,19 @@ namespace CCFS
 
             startButton.Clicked += async delegate
             {
+                indicator.SetBinding(IsVisibleProperty, "IsBusy");
+
+                this.IsBusy = true;
+                indicator.IsVisible = true;
+                indicator.IsRunning = true;
+
+                startButton.IsEnabled = false;
+
                 //TakeImageFromCamera();
                 Constants con = Constants.Instance;
                 con.ClearOldData();
 
-                bool apic = await APICheck();
+                bool apic = await APICheck().ConfigureAwait(true);
 
                 Version versionCheck = await AppVersionCheck().ConfigureAwait(true);
 
@@ -178,6 +196,8 @@ namespace CCFS
                 else
                 {
                     SaveRatings.SaveRatingInstance.ClearSavedData();
+                    this.IsBusy = false;
+                    indicator.IsVisible = false;
 
                     await Navigation.PushAsync(new GuestDetails());
 
@@ -219,6 +239,7 @@ namespace CCFS
             layout.Children.Add(titleImage);
             layout.Children.Add(welcomeLabel);
             layout.Children.Add(titleLabel);
+            layout.Children.Add(indicator);
             layout.Children.Add(startButton);
             layout.Children.Add(copyrightLabel);
 
@@ -248,6 +269,7 @@ namespace CCFS
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            startButton.IsEnabled = true;
 
             if (CheckInternetConnection() == false)
             {

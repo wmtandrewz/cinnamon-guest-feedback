@@ -235,6 +235,26 @@ namespace CCFS
                 TextColor = Color.Black,
             };
 
+            var MailSenderPW = new Label
+            {
+                Text = "SMTP password",
+                FontSize = 18,
+                TextColor = Color.White,
+                VerticalOptions = LayoutOptions.Start,
+                VerticalTextAlignment = TextAlignment.End,
+                HeightRequest = 40,
+
+            };
+
+            var smtpPWEntry = new Entry
+            {
+                IsPassword = true,
+                Text = Settings.SMTPPassword,
+                Placeholder = "password",
+                HeightRequest = 40,
+                TextColor = Color.Black,
+            };
+
             var switcherLayout = new StackLayout();
             switcherLayout.Orientation = StackOrientation.Horizontal;
             switcherLayout.VerticalOptions = LayoutOptions.Center;
@@ -433,6 +453,7 @@ namespace CCFS
                 Settings.SubscriptionKey_Prd = APIMsubkeyPrdEntry.Text;
                 Settings.HotelCode = HotelCode;
                 Settings.DevelopmentInhouseDate = DevDateEntry.Text;
+                Settings.SMTPPassword = smtpPWEntry.Text;
 
                 ActivityLogger.AddLogger("App Configuration Settings Changed.");
 
@@ -466,6 +487,8 @@ namespace CCFS
             formLayout.Children.Add(APIMsubkeyPrdEntry);
             formLayout.Children.Add(DevDateLabel);
             formLayout.Children.Add(DevDateEntry);
+            formLayout.Children.Add(MailSenderPW);
+            formLayout.Children.Add(smtpPWEntry);
             formLayout.Children.Add(buttonLayout);
 
 

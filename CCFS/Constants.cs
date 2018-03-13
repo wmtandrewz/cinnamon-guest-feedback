@@ -71,24 +71,8 @@ namespace CCFS
 
         public void ContactDB(){
             Console.WriteLine("Contacting DB...");
-            pageList.Clear();
-            questionList .Clear();
-            qIDList.Clear();
-            qCodeList.Clear();
-            qCodeList.Clear();
-            displayTypeList.Clear();
-            UIControlList.Clear();
-            DependantQIDList.Clear();
-            DependentValueList.Clear();
-            otherQuestionsArrayList.Clear();
-            otherQuesIDArrayList.Clear();
-            ratingScaleArrayList .Clear();
-            ratingScaleDescArrayList.Clear();
-            OptionalList.Clear();
-            tempNVC.Clear();
-            tempOQNVC.Clear();
-            mainCategory = 0;
-            pageCount = 0;
+
+            ClearOldData();
 
             Console.WriteLine(Settings.Language);
             Console.WriteLine(Settings.HotelCode);

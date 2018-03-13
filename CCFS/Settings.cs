@@ -164,6 +164,19 @@ namespace CCFS.Helpers
             }
         }
 
+        public static string SMTPPassword
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("SMTPPassword", "hp##2009");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("SMTPPassword", value);
+
+            }
+        }
+
         public static string ProductionUrl
         {
             get
