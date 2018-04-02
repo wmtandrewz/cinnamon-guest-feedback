@@ -9,6 +9,8 @@ using Plugin.Connectivity;
 using Xamarin.Forms;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using CCFS.iOS.Services;
+using System.IO;
 /*
 * Author   :   Thimira Andradi
 * Date     :   10th July 2017
@@ -31,12 +33,18 @@ namespace CCFS
         private DateTime AppCurrDate = DateTime.Now;
         //private DateTime AppCurrDate = new DateTime(2018, 02, 07);
 
+        private CameraStream cameraStream;
+
         public Main()
         {
             InitComp(); // Execute the method 'InitComp' for initialize User Interface elements
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
 
             ms = new MailSender();
+
+            cameraStream = DependencyService.Get<CameraStream>();
+            cameraStream.SetupLiveCameraStream();
+            cameraStream.SetFrontCam();
 
         }
 
@@ -153,7 +161,9 @@ namespace CCFS
 
                 startButton.IsEnabled = false;
 
-                //TakeImageFromCamera();
+
+                await TakePoto();
+
                 Constants con = Constants.Instance;
                 con.ClearOldData();
 
@@ -367,6 +377,13 @@ namespace CCFS
                 var stream = file.GetStream();
                 return stream;
             });
+        }
+
+        private async Task TakePoto()
+        {
+            
+            Byte [] imageData = await cameraStream.TakePhoto().ConfigureAwait(true);
+            //titleImage.Source = ImageSource.FromStream(() => new MemoryStream(imageData));
         }
 
     }

@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -186,6 +187,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Services\CameraStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="images\cinnamon.png" />
